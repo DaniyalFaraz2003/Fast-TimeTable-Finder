@@ -2,16 +2,32 @@ import React from "react";
 import { useState } from "react";
 
 import AsyncSelect from 'react-select/async';
-import { colourOptions } from '../data'; // Make sure to provide the correct path to your data file
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+import { courseOptions, categoryOptions } from '../data.mjs';
+
+const animatedComponents = makeAnimated();
+
+function AnimatedMulti() {
+    return (
+        <Select
+            closeMenuOnSelect={false}
+            components={animatedComponents}
+            defaultValue={[categoryOptions[0]]}
+            isMulti
+            options={categoryOptions}
+        />
+    );
+}
 
 const filterColors = (inputValue) => {
-    return colourOptions.filter((i) =>
+    return courseOptions.filter((i) =>
         i.label.toLowerCase().includes(inputValue.toLowerCase())
     );
 };
 
 const promiseOptions = (inputValue) =>
-    new Promise ((resolve) => {
+    new Promise((resolve) => {
         setTimeout(() => {
             resolve(filterColors(inputValue));
         }, 1000);
@@ -60,15 +76,10 @@ const Body = () => {
     return (
         <div className="main flex flex-col p-4 border border-gray-300">
             <div className="selections flex mt-4 border-b border-gray-300 pb-4">
-                <div className="select flex flex-col mr-4 p-4 border-r border-gray-300">
+                <div className="select flex flex-col mr-4 p-4 border-r border-gray-300 basis-1/3">
                     <label htmlFor="category" className="mb-2">Choose Category:</label>
-                    <select id="category" className="p-2 border border-gray-300">
-                        {/* Add options for dropdown 1 */}
-                        <option value="option1">Option 1</option>
-                        <option value="option2">Option 2</option>
-                        <option value="option3">Option 3</option>
-                    </select>
-                    
+                    <AnimatedMulti id="category"/>
+
                     <label htmlFor="course" className="mt-4 mb-2">Select Course:</label>
                     <MyAsyncSelectComponent id="course" changeHandler={setCourse} />
 
@@ -76,7 +87,7 @@ const Body = () => {
                         Add Course
                     </button>
                 </div>
-                <div className="showcourses p-4 flex-col">
+                <div className="showcourses p-4 flex-col basis-2/3">
                     <p className="text-lg font-bold text-gray-800 mb-2">Selected Courses:</p>
                     <div className="courses flex w-full flex-wrap gap-5">
                         {courses.map((course, index) => {
