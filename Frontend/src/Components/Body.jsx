@@ -74,7 +74,7 @@ const Body = () => {
     };
 
     return (
-        <div className="main flex flex-col p-4 border border-gray-300">
+        <div className="main flex flex-col p-4 border border-gray-300 overflow-x-hidden dark:text-white">
             <div className="selections flex mt-4 border-b border-gray-300 pb-4">
                 <div className="select flex flex-col mr-4 p-4 border-r border-gray-300 basis-1/3">
                     <label htmlFor="category" className="mb-2">Choose Category:</label>
