@@ -1,15 +1,19 @@
 import React from "react";
 import { useState } from "react";
 
-const CourseSegment = ({ coursename }) => {
+const CourseSegment = ({ coursename, onRemove }) => {
     return (
-        <p className="text-2xl">
-        <span
-            className=" bg-slate-600 text-white inline-block whitespace-nowrap rounded-[0.27rem] bg-primary-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700"
-        >{coursename}</span>
-    </p>
-    )
-}
+        <div className="inline-flex items-center bg-slate-600 text-white font-semibold px-3 py-1 rounded-full mr-2">
+            <span>{coursename}</span>
+            <button
+                className="ml-2 focus:outline-none"
+                onClick={onRemove}
+            >
+                &#10005;
+            </button>
+        </div>
+    );
+};
 
 const Body = () => {
     const [courses, setCourses] = useState([]);
@@ -20,6 +24,12 @@ const Body = () => {
             setCourses([...courses, selectedCourse]);
         }
     }
+
+    const handleRemoveCourseSegment = (index) => {
+        const newCourses = [...courses];
+        newCourses.splice(index, 1);
+        setCourses(newCourses);
+    };
 
     return (
         <div className="main flex flex-col p-4 border border-gray-300">
@@ -49,7 +59,7 @@ const Body = () => {
                     <p className="text-lg font-bold text-gray-800 mb-2">Selected Courses:</p>
                     <div className="courses flex w-full flex-wrap gap-5">
                         {courses.map((course, index) => {
-                            return <CourseSegment key={index} coursename={course}/>
+                            return <CourseSegment key={index} coursename={course} onRemove={() => handleRemoveCourseSegment(index)}/>
                         })}
                     </div>
                 </div>
