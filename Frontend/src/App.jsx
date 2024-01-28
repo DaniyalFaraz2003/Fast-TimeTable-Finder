@@ -1,12 +1,13 @@
 import React from "react"
 import Header from "./Components/Header"
 import Body from "./Components/Body"
-
+import Footer from "./Components/Footer"
 function App() {
 	return (
 		<div className="flex flex-col">
 			<Header/>
 			<Body/>
+			<Footer/>
 		</div>
 	)
 }
