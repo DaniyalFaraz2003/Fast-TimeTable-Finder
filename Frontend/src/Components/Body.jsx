@@ -3,9 +3,11 @@ import { useState } from "react";
 
 const CourseSegment = ({ coursename }) => {
     return (
-        <p
-            className="inline-block whitespace-nowrap rounded-[0.27rem] bg-primary-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700"
-        >{coursename}</p>
+        <p className="text-2xl">
+        <span
+            className=" bg-slate-600 text-white inline-block whitespace-nowrap rounded-[0.27rem] bg-primary-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700"
+        >{coursename}</span>
+    </p>
     )
 }
 
@@ -45,7 +47,7 @@ const Body = () => {
                 </div>
                 <div className="showcourses p-4 flex-col">
                     <p className="text-lg font-bold text-gray-800 mb-2">Selected Courses:</p>
-                    <div className="courses flex w-full flex-wrap">
+                    <div className="courses flex w-full flex-wrap gap-5">
                         {courses.map((course, index) => {
                             return <CourseSegment key={index} coursename={course}/>
                         })}
