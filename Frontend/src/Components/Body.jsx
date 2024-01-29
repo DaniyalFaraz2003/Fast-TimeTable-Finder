@@ -4,9 +4,23 @@ import { useState } from "react";
 import AsyncSelect from 'react-select/async';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import { courseOptions, categoryOptions } from '../data.mjs';
+import { courseOptions, categoryOptions, sectionOptions } from '../data.mjs';
 
 const animatedComponents = makeAnimated();
+
+function SingleSelect()  {
+    return (
+        <>
+            <Select
+                className="basic-single"
+                classNamePrefix="select"
+                defaultValue={sectionOptions[0]}
+                name="color"
+                options={sectionOptions}
+            />
+        </>
+    );
+};
 
 function AnimatedMulti() {
     return (
@@ -20,7 +34,7 @@ function AnimatedMulti() {
     );
 }
 
-const filterColors = (inputValue) => {
+const filterCourse = (inputValue) => {
     return courseOptions.filter((i) =>
         i.label.toLowerCase().includes(inputValue.toLowerCase())
     );
@@ -29,7 +43,7 @@ const filterColors = (inputValue) => {
 const promiseOptions = (inputValue) =>
     new Promise((resolve) => {
         setTimeout(() => {
-            resolve(filterColors(inputValue));
+            resolve(filterCourse(inputValue));
         }, 1000);
     });
 
@@ -78,14 +92,16 @@ const Body = () => {
             <div className="selections flex mt-4 border-b border-gray-300 pb-4">
                 <div className="select flex flex-col mr-4 p-4 border-r border-gray-300 basis-1/3">
                     <label htmlFor="category" className="mb-2">Choose Category:</label>
-                    <AnimatedMulti id="category"/>
+                    <AnimatedMulti id="category" />
 
                     <label htmlFor="course" className="mt-4 mb-2">Select Course:</label>
                     <MyAsyncSelectComponent id="course" changeHandler={setCourse} />
-
                     <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={addCourse}>
                         Add Course
                     </button>
+
+                    <label htmlFor="section" className="mt-4 mb-2">Select Section:</label>
+                    <SingleSelect />
                 </div>
                 <div className="showcourses p-4 flex-col basis-2/3">
                     <p className="text-lg font-bold text-gray-800 mb-2">Selected Courses:</p>
@@ -102,7 +118,5 @@ const Body = () => {
         </div>
     );
 }
-
-
 
 export default Body;

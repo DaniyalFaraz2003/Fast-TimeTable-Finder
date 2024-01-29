@@ -10,3 +10,9 @@ export const categoryOptions = [
     { label: 'DS 23', value: 'DS 23' },
     { label: 'CY 22', value: 'CY 22' },
 ]
+
+export const sectionOptions = [
+    { label: 'A', value: 'A' },
+    { label: 'B', value: 'B' },
+    { label: 'C', value: 'C' },
+]
