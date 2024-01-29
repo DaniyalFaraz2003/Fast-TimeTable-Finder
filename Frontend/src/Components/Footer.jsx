@@ -17,7 +17,7 @@ export default function Footer() {
       </div>
       <div className="flex flex-col justify-center items-center p-3 gap-3 ">
         <code className="text-white">
-          <b>Copyright &#169;{currentYear}</b>
+          <b>{"Copyright " + currentYear}</b>
         </code>
         <div className="flex flex-col gap-2 items-center">
           <h3>MADE WITH LOVE</h3>
