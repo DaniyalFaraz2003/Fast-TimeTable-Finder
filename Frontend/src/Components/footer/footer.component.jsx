@@ -4,7 +4,7 @@ export default function Footer() {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
   return (
-    <div className="flex bg-black flex-col w-full h-fit pt-10 pb-5 text-white justify-center items-center">
+    <div className="flex bg-black flex-col w-full h-fit pt-10 pb-5 text-white justify-center items-center sticky top-[100vh]">
       <div className="flex flex-col gap-3 justify-center items-center text-center">
         <h1 className="text-3xl">SCHEDULE GENERATOR</h1>
         <code>
