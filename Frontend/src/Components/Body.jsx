@@ -1,39 +1,9 @@
 import React from "react";
 import { useState } from "react";
 
-import AsyncSelect from "react-select/async";
-import Select from "react-select";
-import makeAnimated from "react-select/animated";
+import Select2, { SELECT2_TYPE_CLASSES } from "./select2/select2.component";
+
 import { courseOptions, categoryOptions, sectionOptions } from "../data.mjs";
-
-const animatedComponents = makeAnimated();
-
-function SingleSelect({ onChangeHandler }) {
-  return (
-    <>
-      <Select
-        className="basic-single"
-        classNamePrefix="select"
-        defaultValue={sectionOptions[0]}
-        name="color"
-        onChange={onChangeHandler}
-        options={sectionOptions}
-      />
-    </>
-  );
-}
-
-function AnimatedMulti() {
-  return (
-    <Select
-      closeMenuOnSelect={false}
-      components={animatedComponents}
-      defaultValue={[categoryOptions[0]]}
-      isMulti
-      options={categoryOptions}
-    />
-  );
-}
 
 const filterCourse = (inputValue) => {
   return courseOptions.filter((i) =>
@@ -47,15 +17,6 @@ const promiseOptions = (inputValue) =>
       resolve(filterCourse(inputValue));
     }, 1000);
   });
-
-const MyAsyncSelectComponent = ({ changeHandler }) => (
-  <AsyncSelect
-    cacheOptions
-    defaultOptions
-    loadOptions={promiseOptions}
-    onChange={changeHandler}
-  />
-);
 
 const CourseSegment = ({ coursename, onRemove }) => {
   return (
@@ -103,17 +64,38 @@ const Body = () => {
           <label htmlFor="category" className="mb-2">
             Choose Category:
           </label>
-          <AnimatedMulti id="category" />
+          <Select2
+            type={SELECT2_TYPE_CLASSES.animated}
+            closeMenuOnSelect={false}
+            defaultValue={[categoryOptions[0]]}
+            isMulti
+            options={categoryOptions}
+          />
 
           <label htmlFor="section" className="mt-4 mb-2">
             Select Section:
           </label>
-          <SingleSelect onChangeHandler={onSectionChange} />
+          <Select2
+            selectType={SELECT2_TYPE_CLASSES.base}
+            className="basic-single"
+            classNamePrefix="select"
+            defaultValue={sectionOptions[0]}
+            name="color"
+            onChange={onSectionChange}
+            options={sectionOptions}
+          />
 
           <label htmlFor="course" className="mt-4 mb-2">
             Select Course:
           </label>
-          <MyAsyncSelectComponent id="course" changeHandler={setCourse} />
+          <Select2
+            id="course"
+            selectType={SELECT2_TYPE_CLASSES.async}
+            cacheOptions
+            defaultOptions
+            loadOptions={promiseOptions}
+            onChange={setCourse}
+          />
 
           <button
             className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
