@@ -30,7 +30,6 @@ export const sectionOptions = [
 ];
 
 export const timetable = {
-<<<<<<< HEAD
   Monday: [
     {
       courseName: "Psychology",
@@ -76,72 +75,3 @@ export const timetable = {
 
   Tuesday: [],
 };
-let currTime = null;
-[].reduce(
-  (accumulator, courseObj) => {
-    if (courseObj.beginTime < currTime) {
-      if (
-        accumulator.currArr.length &&
-        !accumulator.duplicates.includes(
-          accumulator.currArr[accumulator.currArr.length - 1]
-        )
-      ) {
-        accumulator.duplicates.push(
-          accumulator.currArr[accumulator.currArr.length - 1]
-        );
-      }
-      accumulator.duplicates.push(courseObj);
-    } else {
-      currTime = courseObj.endTime;
-      accumulator.currArr.push(courseObj);
-    }
-  },
-  { currArr: [], duplicates: [] }
-);
-=======
-    Monday: [
-      {
-        courseName: "Psychology",
-        beginTime: "08:30",
-        endTime: "09:50",
-        roomNo: "C-407",
-        isCancelled: false,
-        isTheory: true,
-      },
-      {
-        courseName: "Prob & Stats",
-        beginTime: "10:00",
-        endTime: "11:20",
-        roomNo: "C-407",
-        isCancelled: false,
-        isTheory: true,
-      },
-      {
-        courseName: "Prob & Stats",
-        beginTime: "10:00",
-        endTime: "11:20",
-        roomNo: "C-407",
-        isCancelled: false,
-        isTheory: true,
-      },
-      {
-        courseName: "DB Lab",
-        beginTime: "11:25",
-        endTime: "14:10",
-        roomNo: "Margalla 3",
-        isCancelled: false,
-        isTheory: false,
-      },
-      {
-        courseName: "FreeLancing",
-        beginTime: "14:30",
-        endTime: "15:50",
-        roomNo: "C-408",
-        isCancelled: false,
-        isTheory: true,
-      },
-    ],
-  
-    Tuesday: [],
-  };
->>>>>>> a973352b622be2c0742ac0d595e1cd462458dcea

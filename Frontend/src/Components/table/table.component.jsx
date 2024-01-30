@@ -1,17 +1,14 @@
 import React from "react";
 
+export default function Table({ courses, day }) {
+  const compareTime = (val1, val2) => {
+    const time1 = val1.beginTime.split(":").join("");
+    const time2 = val2.beginTime.split(":").join("");
+    return time1 > time2;
+  };
 
-
-export default function Table ({courses,day}){
-    
-
-    const compareTime = (val1, val2) =>{
-        const time1 = val1.beginTime.split(':').join('');
-        const time2 = val2.beginTime.split(':').join('');
-        return time1 > time2
-    }
-    courses.sort(compareTime);
-    const findDuplicates =  () =>{
+  courses.sort(compareTime);
+  /*const findDuplicates =  () =>{
         const duplicates = {};
         let prevStart = null, prevEnd = null;
         courses.forEach((val,index)=>{
@@ -56,62 +53,68 @@ export default function Table ({courses,day}){
         return duplicates;
     }
     const duplicates = findDuplicates();
-    
+    */
+  let currTime = null;
+  const accumulator = { currArr: [], duplicates: [] };
+  const response = courses.forEach((courseObj) => {
+    if (currTime && courseObj.beginTime < currTime) {
+      if (
+        accumulator.currArr.length &&
+        !accumulator.duplicates.includes(
+          accumulator.currArr[accumulator.currArr.length - 1]
+        )
+      ) {
+        accumulator.duplicates.push(
+          accumulator.currArr[accumulator.currArr.length - 1]
+        );
+      }
+      accumulator.duplicates.push(courseObj);
+    } else {
+      currTime = courseObj.endTime;
+      accumulator.currArr.push(courseObj);
+    }
+  });
+  console.log(accumulator);
 
-
-
-    return(
-        <div>
-            <div>
-                <h1> TIME TABLE FOR {day.toUpperCase()}</h1>
-            
-            </div>
-            <table className="min-w-full bg-white border border-gray-300">
-      
+  return (
+    <div>
+      <div>
+        <h1> TIME TABLE FOR {day.toUpperCase()}</h1>
+      </div>
+      <table className="min-w-full bg-white border border-gray-300">
         <tr>
           <td className="py-2 px-4 border-b">TIME</td>
-          {
-            courses.map((val,index)=>{
-                return(
-                    <td className="py-2 px-4 border-b" key = {index}>
-                        {val.beginTime + '-' + val.endTime}
-                    </td>
-                )
-            })
-          }
+          {courses.map((val, index) => {
+            return (
+              <td className="py-2 px-4 border-b" key={index}>
+                {val.beginTime + "-" + val.endTime}
+              </td>
+            );
+          })}
         </tr>
         <tr>
           <td className="py-2 px-4 border-b">ROOM</td>
-          {
-            courses.map((val,index)=>{
-                return(
-                    <td className="py-2 px-4 border-b" key = {index}>
-                        {val.roomNo}
-                    </td>
-                )
-            })
-          }
+          {courses.map((val, index) => {
+            return (
+              <td className="py-2 px-4 border-b" key={index}>
+                {val.roomNo}
+              </td>
+            );
+          })}
         </tr>
         <tr>
           <td className="py-2 px-4 border-b">SUBJECT</td>
-          {
-            courses.map((val,index)=>{
-                return(
-                    <td className="py-2 px-4 border-b" key = {index}>
-                        {val.courseName}
-                    </td>
-                )
-            })
-          }
+          {courses.map((val, index) => {
+            return (
+              <td className="py-2 px-4 border-b" key={index}>
+                {val.courseName}
+              </td>
+            );
+          })}
         </tr>
-    </table>
-
-
-        </div>
-
-
-
-    )
+      </table>
+    </div>
+  );
 }
 
 /*
