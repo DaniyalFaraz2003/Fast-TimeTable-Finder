@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
-const Toggler = () => {
+const Toggler = (props) => {
   const prefersDarkMode = useMediaQuery({ query: '(prefers-color-scheme: dark)' });
   const [isDarkMode, setIsDarkMode] = useState(prefersDarkMode);
 
@@ -12,6 +12,7 @@ const Toggler = () => {
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
+    props.setHeaderMode(!isDarkMode)
     document.documentElement.classList.toggle('dark', !isDarkMode);
   };
 
