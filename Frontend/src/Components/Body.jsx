@@ -3,7 +3,9 @@ import { useState } from "react";
 
 import Select2, { SELECT2_TYPE_CLASSES } from "./select2/select2.component";
 
-import { courseOptions, degreeOptions, batchOptions, sectionOptions } from "../data.mjs";
+import {timetable, courseOptions, degreeOptions, batchOptions, sectionOptions } from "../data.mjs";
+
+import Table from "./table/table.component";
 
 const filterCourse = (inputValue) => {
 	return courseOptions.filter((i) =>
@@ -164,9 +166,7 @@ const Body = () => {
 				</div>
 			</div>
 			<div className="timetable mt-4 p-4">
-				<p className="text-lg font-bold">
-					Here the generated timetable will come.
-				</p>
+				<Table courses = {timetable.Monday} day = {"Monday"}/>
 			</div>
 		</div>
 	);

@@ -31,47 +31,47 @@ export const sectionOptions = [
 
 export const timetable = {
     Monday: [
-        {
-            courseName: "Psychology",
-            beginTime: "08:30",
-            endTime: "09:50",
-            roomNo: "C-407",
-            isCancelled: false,
-            isTheory: true,
-        },
-        {
-            courseName: "Prob & Stats",
-            beginTime: "10:00",
-            endTime: "11:20",
-            roomNo: "C-407",
-            isCancelled: false,
-            isTheory: true,
-        },
-        {
-            courseName: "Prob & Stats",
-            beginTime: "10:00",
-            endTime: "11:20",
-            roomNo: "C-407",
-            isCancelled: false,
-            isTheory: true,
-        },
-        {
-            courseName: "DB Lab",
-            beginTime: "11:25",
-            endTime: "14:10",
-            roomNo: "Margalla 3",
-            isCancelled: false,
-            isTheory: false,
-        },
-        {
-            courseName: "FreeLancing",
-            beginTime: "14:30",
-            endTime: "15:50",
-            roomNo: "C-408",
-            isCancelled: false,
-            isTheory: true,
-        },
+      {
+        courseName: "Psychology",
+        beginTime: "08:30",
+        endTime: "09:50",
+        roomNo: "C-407",
+        isCancelled: false,
+        isTheory: true,
+      },
+      {
+        courseName: "Prob & Stats",
+        beginTime: "10:00",
+        endTime: "11:20",
+        roomNo: "C-407",
+        isCancelled: false,
+        isTheory: true,
+      },
+      {
+        courseName: "Prob & Stats",
+        beginTime: "10:00",
+        endTime: "11:20",
+        roomNo: "C-407",
+        isCancelled: false,
+        isTheory: true,
+      },
+      {
+        courseName: "DB Lab",
+        beginTime: "11:25",
+        endTime: "14:10",
+        roomNo: "Margalla 3",
+        isCancelled: false,
+        isTheory: false,
+      },
+      {
+        courseName: "FreeLancing",
+        beginTime: "14:30",
+        endTime: "15:50",
+        roomNo: "C-408",
+        isCancelled: false,
+        isTheory: true,
+      },
     ],
-
+  
     Tuesday: [],
-};
+  };
