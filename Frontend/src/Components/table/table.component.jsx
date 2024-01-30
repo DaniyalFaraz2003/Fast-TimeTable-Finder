@@ -11,8 +11,11 @@ export default function Table ({courses,day}){
         return time1 > time2
     }
     courses.sort(compareTime);
+
+
     const findDuplicates =  () =>{
         const duplicates = {};
+        const uniqueCourses = []
         let prevStart = null, prevEnd = null;
         courses.forEach((val,index)=>{
             const start = val.beginTime.split(':').join('');
@@ -50,16 +53,13 @@ export default function Table ({courses,day}){
                     duplicates[end] = [val]
                 }
             }
+            else uniqueCourses.push(val)
             prevStart = start
             prevEnd = end
         })
-        return duplicates;
+        return [duplicates,uniqueCourses];
     }
-    const duplicates = findDuplicates();
-    
-
-
-
+    const [duplicates ,uniqueCourses]= findDuplicates();
     return(
         <div>
             <div>
@@ -71,7 +71,7 @@ export default function Table ({courses,day}){
         <tr>
           <td className="py-2 px-4 border-b">TIME</td>
           {
-            courses.map((val,index)=>{
+            uniqueCourses.map((val,index)=>{
                 return(
                     <td className="py-2 px-4 border-b" key = {index}>
                         {val.beginTime + '-' + val.endTime}
@@ -83,7 +83,7 @@ export default function Table ({courses,day}){
         <tr>
           <td className="py-2 px-4 border-b">ROOM</td>
           {
-            courses.map((val,index)=>{
+            uniqueCourses.map((val,index)=>{
                 return(
                     <td className="py-2 px-4 border-b" key = {index}>
                         {val.roomNo}
@@ -95,7 +95,7 @@ export default function Table ({courses,day}){
         <tr>
           <td className="py-2 px-4 border-b">SUBJECT</td>
           {
-            courses.map((val,index)=>{
+            uniqueCourses.map((val,index)=>{
                 return(
                     <td className="py-2 px-4 border-b" key = {index}>
                         {val.courseName}
