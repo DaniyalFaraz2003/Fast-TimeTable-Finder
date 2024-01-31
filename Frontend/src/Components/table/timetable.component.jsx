@@ -7,7 +7,7 @@ const Timetable = ({ courses, day }) => {
 
   return (
     <>
-      {width <= 400 ? (
+      {width <= 550 ? (
         <VTable className="vtable" courses={courses} day={day} />
       ) : (
         <HTable className="htable" courses={courses} day={day} />
