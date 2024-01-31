@@ -40,30 +40,30 @@ export default function Table({ courses, day }) {
                 <table className="min-w-full border-separate border-spacing-2 text-center">
                     <tbody>
                         <tr>
-                            <td className="font-bold bg-light-blue dark:bg-dark-purple rounded-lg p-2 border-solid sm:w-1/4 md:w-1/3 lg:w-1/2 xl:w-1/5">TIME</td>
+                            <td className="font-bold bg-light-blue dark:bg-dark-purple rounded-lg p-1 border-solid sm:w-1/4 md:w-1/3 lg:w-1/2 xl:w-1/5">TIME</td>
                             {currArr.map((val, index) => {
                                 return (
-                                    <td className="font-semibold bg-gray-500 rounded-lg sm:w-1/4 md:w-1/3 lg:w-1/2 xl:w-1/5" key={index}>
+                                    <td className="font-semibold bg-gray-500 rounded-lg p-1 sm:w-1/4 md:w-1/3 lg:w-1/2 xl:w-1/5" key={index}>
                                         {val.beginTime + "-" + val.endTime}
                                     </td>
                                 );
                             })}
                         </tr>
                         <tr>
-                            <td className="font-bold bg-light-blue dark:bg-dark-purple rounded-lg p-2 border-solid sm:w-1/4 md:w-1/3 lg:w-1/2 xl:w-1/5">ROOM</td>
+                            <td className="font-bold bg-light-blue dark:bg-dark-purple rounded-lg p-1 border-solid sm:w-1/4 md:w-1/3 lg:w-1/2 xl:w-1/5">ROOM</td>
                             {currArr.map((val, index) => {
                                 return (
-                                    <td className="font-semibold bg-gray-500 rounded-lg sm:w-1/4 md:w-1/3 lg:w-1/2 xl:w-1/5" key={index}>
+                                    <td className="font-semibold bg-gray-500 rounded-lg p-1 sm:w-1/4 md:w-1/3 lg:w-1/2 xl:w-1/5" key={index}>
                                         {val.roomNo}
                                     </td>
                                 );
                             })}
                         </tr>
                         <tr>
-                            <td className="font-bold bg-light-blue dark:bg-dark-purple sm:w-1/5 md:w-1/3 lg:w-1/2 xl:w-1/5">SUBJECT</td>
+                            <td className="font-bold bg-light-blue dark:bg-dark-purple rounded-lg p-1 sm:w-1/5 md:w-1/3 lg:w-1/2 xl:w-1/5">SUBJECT</td>
                             {currArr.map((val, index) => {
                                 return (
-                                    <td className="font-semibold bg-gray-500 rounded-lg p-2 border-solid sm:w-1/5 md:w-1/3 lg:w-1/2 xl:w-1/5" key={index}>
+                                    <td className="font-semibold bg-gray-500 rounded-lg p-1 border-solid sm:w-1/4 md:w-1/3 lg:w-1/2 xl:w-1/5" key={index}>
                                         {val.courseName}
                                     </td>
                                 );

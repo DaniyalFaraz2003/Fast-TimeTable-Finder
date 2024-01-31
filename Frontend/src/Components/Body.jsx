@@ -6,7 +6,7 @@ import Select2, { SELECT2_TYPE_CLASSES } from "./select2/select2.component";
 import { timetable, courseOptions, degreeOptions, batchOptions, sectionOptions } from "../data.mjs";
 
 import Table from "./table/table.component";
-
+import VTable from "./table/vtable.component";
 const filterCourse = (inputValue) => {
 	return courseOptions.filter((i) =>
 		i.label.toLowerCase().includes(inputValue.toLowerCase())
