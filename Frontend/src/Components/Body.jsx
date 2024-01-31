@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import Select2, { SELECT2_TYPE_CLASSES } from "./select2/select2.component";
 
-import {timetable, courseOptions, degreeOptions, batchOptions, sectionOptions } from "../data.mjs";
+import { timetable, courseOptions, degreeOptions, batchOptions, sectionOptions } from "../data.mjs";
 
 import Table from "./table/table.component";
 
@@ -86,7 +86,7 @@ const Body = () => {
 
 	return (
 		<div className="flex flex-col p-4 border border-gray-300 dark:text-white" >
-			<div className="selections flex mt-4 border-b border-gray-300 pb-4 flex-row">
+			<div className="selections flex mt-4 border-b border-gray-300 pb-4 flex-col md:flex-row">
 				<div className="select flex flex-col p-4 border-r border-gray-300 basis-1/3">
 					<label htmlFor="degree" className="mt-4 mb-2">
 						Select Degree:
@@ -149,7 +149,7 @@ const Body = () => {
 					</button>
 				</div>
 				<div className="showcourses p-4 flex-col basis-2/3">
-					<p className="text-lg font-bold text-gray-800 mb-2">
+					<p className="text-lg font-bold text-gray-800 mb-2 dark:text-white">
 						Selected Courses:
 					</p>
 					<div className="courses flex w-full flex-wrap gap-5">
@@ -163,11 +163,18 @@ const Body = () => {
 							);
 						})}
 					</div>
+					<div className="flex self-end w-full">
+						<button
+							className="mt-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded justify-self-end"
+						>
+							Generate TimeTable
+						</button>
+					</div>
 				</div>
 
 			</div>
 			<div>
-				<Table courses = {timetable.Monday} day = {"Monday"}/>
+				<Table courses={timetable.Monday} day={"Monday"} />
 			</div>
 		</div>
 	);
