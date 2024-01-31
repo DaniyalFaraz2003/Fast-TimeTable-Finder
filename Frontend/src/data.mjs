@@ -29,6 +29,16 @@ export const sectionOptions = [
   { label: "ALL", value: "ALL" },
 ];
 
+export const dayOptions = [
+  { label: "Monday", value: "Monday" },
+  { label: "Tuesday", value: "Tuesday" },
+  { label: "Wednesday", value: "Wednesday" },
+  { label: "Thursday", value: "Thursday" },
+  { label: "Friday", value: "Friday" },
+  { label: "Saturday", value: "Saturday" },
+  { label: "Sunday", value: "Sunday" },
+  { label: "ALL", value: "ALL" },
+];
 export const timetable = {
   Monday: [
     {

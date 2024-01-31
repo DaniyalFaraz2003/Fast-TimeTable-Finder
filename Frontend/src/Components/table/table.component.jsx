@@ -29,7 +29,7 @@ export default function HTable({ courses, day }) {
       accumulator.currArr.push(courseObj);
     }
   });
-  console.log(accumulator);
+
   const { currArr, duplicates } = accumulator;
   return (
     <div className="py-4 flex flex-col gap-3">
