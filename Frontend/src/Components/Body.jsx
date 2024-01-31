@@ -85,9 +85,9 @@ const Body = () => {
 	};
 
 	return (
-		<div className="main flex flex-col p-4 border border-gray-300 overflow-x-hidden dark:text-white">
-			<div className="selections flex mt-4 border-b border-gray-300 pb-4">
-				<div className="select flex flex-col mr-4 p-4 border-r border-gray-300 basis-1/3">
+		<div className="flex flex-col p-4 border border-gray-300 dark:text-white" >
+			<div className="selections flex mt-4 border-b border-gray-300 pb-4 flex-row">
+				<div className="select flex flex-col p-4 border-r border-gray-300 basis-1/3">
 					<label htmlFor="degree" className="mt-4 mb-2">
 						Select Degree:
 					</label>
@@ -164,8 +164,9 @@ const Body = () => {
 						})}
 					</div>
 				</div>
+
 			</div>
-			<div className="timetable mt-4 p-4">
+			<div>
 				<Table courses = {timetable.Monday} day = {"Monday"}/>
 			</div>
 		</div>
