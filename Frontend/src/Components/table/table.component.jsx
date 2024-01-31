@@ -32,11 +32,11 @@ export default function Table({ courses, day }) {
   console.log(accumulator);
   const {currArr,duplicates} = accumulator
   return (
-    <div className="py-4">
-      <div className="overflow-x-auto">
-        <div className=" bg-light-blue dark:bg-dark-purple w-full p-3 rounded-lg font-bold">
-          <h1>TIME TABLE FOR {day.toUpperCase()}</h1>
-        </div>
+    <div className="py-4 flex flex-col gap-3">
+      <div className="items-center bg-light-blue dark:bg-dark-purple w-full p-3 rounded-lg font-bold text-center">
+        <h1>TIME TABLE FOR {day.toUpperCase()}</h1>
+      </div>
+      <div className="flex flex-col overflow-x-auto">
         <table className="min-w-full border-separate border-spacing-2 text-center">
           <tbody>
             <tr>
@@ -60,10 +60,10 @@ export default function Table({ courses, day }) {
               })}
             </tr>
             <tr>
-              <td className="font-bold bg-light-blue dark:bg-dark-purple sm:w-1/4 md:w-1/3 lg:w-1/2 xl:w-1/5">SUBJECT</td>
+              <td className="font-bold bg-light-blue dark:bg-dark-purple sm:w-1/5 md:w-1/3 lg:w-1/2 xl:w-1/5">SUBJECT</td>
               {currArr.map((val, index) => {
                 return (
-                  <td className="font-semibold bg-gray-500 rounded-lg p-2 border-solid sm:w-1/4 md:w-1/3 lg:w-1/2 xl:w-1/5" key={index}>
+                  <td className="font-semibold bg-gray-500 rounded-lg p-2 border-solid sm:w-1/5 md:w-1/3 lg:w-1/2 xl:w-1/5" key={index}>
                     {val.courseName}
                   </td>
                 );
