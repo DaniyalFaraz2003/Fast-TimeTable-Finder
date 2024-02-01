@@ -13,7 +13,8 @@ export const SELECT2_TYPE_CLASSES = {
 const BaseSelect = (props) => {
   return (
     <Select
-      className="basic-single"
+      className= 'basic-single'
+      styles={props.styles}
       classNamePrefix="select"
       name="color"
       {...props}
@@ -27,12 +28,17 @@ const AnimatedSelect = (props) => {
       closeMenuOnSelect={false}
       components={animatedComponents}
       {...props}
+      
     />
   );
 };
 
 const AsySelect = (props) => {
-  return <AsyncSelect cacheOptions defaultOptions {...props} />;
+  return <
+    AsyncSelect cacheOptions defaultOptions {...props}
+    className="bg-dark-purple"
+    theme={'neutral30'}
+  />;
 };
 
 const getSelect2 = (selectType = SELECT2_TYPE_CLASSES.base) =>
@@ -43,11 +49,36 @@ const getSelect2 = (selectType = SELECT2_TYPE_CLASSES.base) =>
     [SELECT2_TYPE_CLASSES.async]: AsySelect,
   }[selectType]);
 
-const Select2 = ({ selectType, ...otherprops }) => {
+const Select2 = ({ selectType, isDarkmode,...otherprops }) => {
   const SelectComponent = getSelect2(selectType);
   const { options } = otherprops;
-
-  return <SelectComponent {...otherprops}></SelectComponent>;
+  const styles = {
+    container: (provided) => ({
+      ...provided,
+      backgroundColor: isDarkmode ? '#525759': 'white',
+      color:  isDarkmode ?'white':'#000',
+    }),
+    control: (provided, state) => ({
+      ...provided,
+      color:  isDarkmode ?'#ffff':'#000',
+      backgroundColor: state.isFocused ? isDarkmode ?'#3C0753':'#92C7CF' : isDarkmode ? '#525759': 'white', 
+    }),
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: 'bg-gray-500',
+      color:  isDarkmode ?'white':'black',
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected ? isDarkmode ?'#3C0753':'#92C7CF' : isDarkmode ? '#525759': 'white' ,
+      color:  isDarkmode ?'white':'#000',
+    }),
+    singleValue: provided => ({
+      ...provided,
+      color:  isDarkmode ?'#ffff':'#000',
+    })
+  }
+  return <SelectComponent {...otherprops} isDarkmode = {isDarkmode} styles = {styles}></SelectComponent>;
 };
 
 export default Select2;

@@ -32,7 +32,7 @@ export default function VTable({ courses, day }) {
   const {currArr,duplicates} = accumulator
   return (
     <div className="py-4 flex flex-col gap-3">
-      <div className="items-center bg-light-blue dark:bg-dark-purple w-full p-3 rounded-lg font-bold text-center">
+      <div className="items-center bg-gradient-to-l dark:from-dark-violet dark:to-dark-purple from-light-blue to-light-cyan w-full p-3 rounded-lg font-bold text-center">
         <h1>TIME TABLE FOR {day.toUpperCase()}</h1>
       </div>
       <div className="flex flex-col overflow-x-auto">

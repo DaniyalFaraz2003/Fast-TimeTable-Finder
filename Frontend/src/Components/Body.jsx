@@ -39,7 +39,7 @@ const CourseSegment = ({ coursename, onRemove }) => {
   );
 };
 
-const Body = () => {
+const Body = ({isDarkmode}) => {
   const [courses, setCourses] = useState([]);
   const [courseOption, setCourseOption] = useState({});
   const [degreeOption, setDegreeOption] = useState("");
@@ -115,10 +115,11 @@ const Body = () => {
     <div className="flex flex-col p-4 border border-gray-300 dark:text-white">
       <div className="selections flex mt-4 border-b border-gray-300 pb-4 flex-col md:flex-row">
         <div className="select flex flex-col p-4 border-r border-gray-300 basis-1/3">
-          <label htmlFor="day" className="mt-4 mb-2">
+          <label htmlFor="day" className="mt-4 mb-2 font-semibold">
             Select Day:
           </label>
           <Select2
+		  	isDarkmode = {isDarkmode}
             id="day"
             selectType={SELECT2_TYPE_CLASSES.base}
             className="basic-single"
@@ -128,10 +129,11 @@ const Body = () => {
             options={dayOptions}
           />
 
-          <label htmlFor="degree" className="mt-4 mb-2">
+          <label htmlFor="degree" className="mt-4 mb-2 font-semibold">
             Select Degree:
           </label>
           <Select2
+		  	isDarkmode = {isDarkmode}
             id="degree"
             selectType={SELECT2_TYPE_CLASSES.base}
             className="basic-single"
@@ -142,10 +144,11 @@ const Body = () => {
             options={degreeOptions}
           />
 
-          <label htmlFor="batch" className="mt-4 mb-2">
+          <label htmlFor="batch" className="mt-4 mb-2 font-semibold">
             Select Batch:
           </label>
           <Select2
+		  	isDarkmode = {isDarkmode}
             id="batch"
             selectType={SELECT2_TYPE_CLASSES.base}
             className="basic-single"
@@ -156,10 +159,11 @@ const Body = () => {
             options={batchOptions}
           />
 
-          <label htmlFor="course" className="mt-4 mb-2">
+          <label htmlFor="course" className="mt-4 mb-2 font-semibold">
             Select Course:
           </label>
           <Select2
+		  	isDarkmode = {isDarkmode}
             id="course"
             selectType={SELECT2_TYPE_CLASSES.async}
             cacheOptions
@@ -168,10 +172,11 @@ const Body = () => {
             onChange={setCourse}
           />
 
-          <label htmlFor="section" className="mt-4 mb-2">
+          <label htmlFor="section" className="mt-4 mb-2 font-semibold">
             Select Section:
           </label>
           <Select2
+		  	isDarkmode = {isDarkmode}
             selectType={SELECT2_TYPE_CLASSES.base}
             className="basic-single"
             classNamePrefix="select"
@@ -182,7 +187,8 @@ const Body = () => {
           />
 
           <button
-            className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="transition-colors duration-75 mt-4 bg-gradient-to-l dark:from-dark-violet dark:to-dark-purple from-light-blue to-light-cyan dark:text-white  text-gray-800 font-bold py-2 px-4 rounded 
+            hover:dark:from-dark-purple hover:dark:to-dark-violet hover:from-light-cyan hover:to-light-blue  "
             onClick={addCourse}
           >
             Add Course
@@ -204,7 +210,7 @@ const Body = () => {
             })}
           </div>
           <div className="flex self-end w-full">
-            <button className="mt-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded justify-self-end">
+            <button className="mt-10 bg-gradient-to-l dark:from-dark-violet dark:to-dark-purple from-light-blue to-light-cyan dark:text-white hover:bg-blue-700 text-black font-bold py-2 px-4 rounded justify-self-center">
               Generate TimeTable
             </button>
           </div>

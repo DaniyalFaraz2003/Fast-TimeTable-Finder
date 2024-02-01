@@ -33,7 +33,7 @@ export default function HTable({ courses, day }) {
   const { currArr, duplicates } = accumulator;
   return (
     <div className="py-4 flex flex-col gap-3">
-      <div className="items-center bg-light-blue dark:bg-dark-purple w-full p-3 rounded-lg font-bold text-center">
+      <div className="items-center bg-gradient-to-l dark:from-dark-violet dark:to-dark-purple from-light-blue to-light-cyan w-full p-3 rounded-lg font-bold text-center">
         <h1>TIME TABLE FOR {day.toUpperCase()}</h1>
       </div>
       <div className="flex flex-col overflow-x-auto">
@@ -88,7 +88,7 @@ export default function HTable({ courses, day }) {
         </table>
       </div>
       {duplicates.length !== 0 && (
-        <div className="flex flex-col justify-start p-3 bg-red-400 rounded-lg opacity-80 text-start">
+        <div className="flex flex-col justify-start p-3 bg-red-500 rounded-lg opacity-70 text-start">
           <h1 className="font-bold">CLASH FOUND IN THE FOLLOWING COURSES</h1>
           <ul className="list-decimal p-4">
             {duplicates.map((val, index) => {
