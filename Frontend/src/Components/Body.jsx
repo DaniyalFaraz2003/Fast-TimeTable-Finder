@@ -9,6 +9,7 @@ import {
 	degreeOptions,
 	batchOptions,
 	sectionOptions,
+	dayOptions,
 } from "../data.mjs";
 
 import Table from "./table/table.component";
@@ -44,10 +45,16 @@ const Body = () => {
 	const [degreeOption, setDegreeOption] = useState("");
 	const [batchOption, setBatchOption] = useState("");
 	const [currentSection, setCurrentSection] = useState("");
+	const [dayOption, setDayOption] = useState("Monday");
 
 	function setCourse(currentOption) {
 		setCourseOption(currentOption);
 	}
+
+	const onDayChange = (selectedDay) => {
+		const { label, value } = selectedDay;
+		setDayOption(value);
+	};
 
 	const onDegreeChange = (selectedDegree) => {
 		const { label, value } = selectedDegree;
@@ -108,6 +115,19 @@ const Body = () => {
 		<div className="flex flex-col p-4 border border-gray-300 dark:text-white">
 			<div className="selections flex mt-4 border-b border-gray-300 pb-4 flex-col md:flex-row">
 				<div className="select flex flex-col p-4 border-r border-gray-300 basis-1/3">
+					<label htmlFor="day" className="mt-4 mb-2">
+						Select Day:
+					</label>
+					<Select2
+						id="day"
+						selectType={SELECT2_TYPE_CLASSES.base}
+						className="basic-single"
+						classNamePrefix="select"
+						defaultValue={dayOptions[0]}
+						onChange={onDayChange}
+						options={dayOptions}
+					/>
+
 					<label htmlFor="degree" className="mt-4 mb-2">
 						Select Degree:
 					</label>
@@ -194,7 +214,7 @@ const Body = () => {
 				{
 					//<Table courses={timetable.Monday} day={"Monday"} />}
 				}
-				<Timetable courses={timetable.Monday} day={"Monday"} />
+				<Timetable courses={timetable} day={dayOption} />
 			</div>
 		</div>
 	);
