@@ -12,7 +12,14 @@ export default {
         'dark-body': '#0A0A0A'
       }
     },
+    variants: {
+      extend: {
+        scrollbar: ['rounded', 'dark'], // Add the variants you need
+      },
+    }
   },  
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 }
 

@@ -4,6 +4,8 @@ import Body from "./Components/Body";
 import Footer from "./Components/footer/footer.component";
 import { useState } from "react";
 import { useMediaQuery } from 'react-responsive';
+
+
 function App() {
   const [isDarkmode,setIsDarkMode] = useState(useMediaQuery({ query: '(prefers-color-scheme: dark)' }))
   return (

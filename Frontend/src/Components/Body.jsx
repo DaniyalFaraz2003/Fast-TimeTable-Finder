@@ -111,9 +111,9 @@ const Body = ({isDarkmode}) => {
   };
 
   return (
-    <div className="flex flex-col p-4 border border-gray-300 dark:text-white">
-      <div className="selections flex mt-4 border-b border-gray-300 pb-4 flex-col md:flex-row">
-        <div className="select flex flex-col p-4 border-r border-gray-300 basis-1/3">
+    <div className="flex flex-col p-4 dark:text-white">
+      <div className="selections flex mt-4 border-gray-300 pb-4 flex-col md:flex-row">
+        <div className="select flex flex-col p-5 md:border-r-4 xs:border-b-4 border-light-blue dark:border-dark-purple basis-1/3">
           <label htmlFor="day" className="mt-4 mb-2 font-semibold">
             Select Day:
           </label>
