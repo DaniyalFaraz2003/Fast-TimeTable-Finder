@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-
 import Select2, { SELECT2_TYPE_CLASSES } from "./select2/select2.component";
 
 import {
@@ -12,9 +11,9 @@ import {
   dayOptions,
 } from "../data.mjs";
 
-import Table from "./table/table.component";
-import VTable from "./table/vtable.component";
+import Button from "./Button/button.component";
 import Timetable from "./table/timetable.component";
+
 const filterCourse = (inputValue) => {
   return courseOptions.filter((i) =>
     i.label.toLowerCase().includes(inputValue.toLowerCase())
@@ -185,20 +184,19 @@ const Body = ({isDarkmode}) => {
             onChange={onSectionChange}
             options={sectionOptions}
           />
-
-          <button
-            className="transition-colors duration-75 mt-4 bg-gradient-to-l dark:from-dark-violet dark:to-dark-purple from-light-blue to-light-cyan dark:text-white  text-gray-800 font-bold py-2 px-4 rounded 
-            hover:dark:from-dark-purple hover:dark:to-dark-violet hover:from-light-cyan hover:to-light-blue  "
-            onClick={addCourse}
-          >
-            Add Course
-          </button>
+          <div className="flex justify-center align-middle pt-3 mt-3">
+            <Button
+              onClick={addCourse}
+            >
+              Add Course
+            </Button>
+          </div>
         </div>
         <div className="showcourses p-4 flex-col basis-2/3">
           <p className="text-lg font-bold text-gray-800 mb-2 dark:text-white">
             Selected Courses:
           </p>
-          <div className="courses flex w-full flex-wrap gap-5">
+          <div className="courses flex w-full flex-wrap">
             {courses.map((course, index) => {
               return (
                 <CourseSegment
@@ -209,10 +207,10 @@ const Body = ({isDarkmode}) => {
               );
             })}
           </div>
-          <div className="flex self-end w-full">
-            <button className="mt-10 bg-gradient-to-l dark:from-dark-violet dark:to-dark-purple from-light-blue to-light-cyan dark:text-white hover:bg-blue-700 text-black font-bold py-2 px-4 rounded justify-self-center">
+          <div className="flex self-end w-full mt-5 justify-center">
+            <Button>
               Generate TimeTable
-            </button>
+            </Button>
           </div>
         </div>
       </div>
