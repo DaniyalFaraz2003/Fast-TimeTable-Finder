@@ -5,9 +5,10 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const { google } = require("googleapis");
 
+const fs = require("fs");
+
 const app = express();
 const PORT = process.env.PORT || 5000;
-
 
 app.use(logger);
 app.use(express.json());
@@ -16,50 +17,53 @@ app.use(cors());
 // app.use("/", require("./routes/root"));
 
 app.get("/home", (req, res) => {
-    res.send("Hello World");
-})
+  res.send("Hello World");
+});
 
 // test code for the google sheets api
 app.get("/", async (req, res) => {
-    const auth = new google.auth.GoogleAuth({
-        keyFile: "key.json",
-        scopes: "https://www.googleapis.com/auth/spreadsheets"
-    })
+  const sheetId = "1feZLJJN4NDjAnqA8J5vHnVGrl9R91-NFGOqAW0gU5h4";
+  const outputPath = "output.xlsx";
 
-    // create client instance for auth
-    const client = await auth.getClient();
+  const auth = new google.auth.GoogleAuth({
+    keyFile: "key.json", // Path to your credentials file
+    scopes: ["https://www.googleapis.com/auth/drive.readonly"],
+  });
+  const fileId = sheetId;
+  const client = await auth.getClient();
+  const drive = google.drive({ version: "v3", auth: client });
 
-    //instance of google sheets api
-    const googleSheets = google.sheets({
-        version: "v4", auth: client
-    })
+  try {
+    const exportOptions = {
+      fileId: fileId,
+      mimeType:
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    };
 
-    // const spreadsheetId = "11Vo63U0mdIj_pTp0QQKZv7rtWXrycgJ9-uEE7Jfejqc"; // change this id for another spreadsheet
-    const spreadsheetId = "1feZLJJN4NDjAnqA8J5vHnVGrl9R91-NFGOqAW0gU5h4"; // change this id for another spreadsheet
-    // get metadata about the spreadsheet
-    const metadata = await googleSheets.spreadsheets.get({
-        auth, spreadsheetId
-    })
+    const response = await drive.files.export(exportOptions, {
+      responseType: "stream",
+    });
 
-    const rows = await googleSheets.spreadsheets.values.get({
-        auth,
-        spreadsheetId,
-        range: "Monday", majorDimension: "COLUMNS"
-    })
-    res.send(rows.data);
-})
+    const dest = fs.createWriteStream(outputPath);
+    response.data
+      .on("error", (err) => console.error("Error downloading file:", err))
+      .pipe(dest);
 
+    console.log(`Google Sheet downloaded successfully to ${outputPath}`);
+  } catch (error) {
+    console.error("Error downloading Google Sheet:", error);
+  }
+  res.send("done");
+});
 
 // test code ends here
 
-app.use('*', (req, res) => {
-    res
-        .status(404)
-        .send("Sorry the resource you want is not on the server");
+app.use("*", (req, res) => {
+  res.status(404).send("Sorry the resource you want is not on the server");
 });
 
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-    console.log(`Server running on PORT: ${PORT}`);
-})
+  console.log(`Server running on PORT: ${PORT}`);
+});
