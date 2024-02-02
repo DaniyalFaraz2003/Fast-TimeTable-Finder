@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-
 import Select2, { SELECT2_TYPE_CLASSES } from "./select2/select2.component";
 
 import {
@@ -12,9 +11,9 @@ import {
 	dayOptions,
 } from "../data.mjs";
 
-import Table from "./table/table.component";
-import VTable from "./table/vtable.component";
+import Button from "./Button/button.component";
 import Timetable from "./table/timetable.component";
+
 const filterCourse = (inputValue) => {
 	return courseOptions.filter((i) =>
 		i.label.toLowerCase().includes(inputValue.toLowerCase())
@@ -39,13 +38,13 @@ const CourseSegment = ({ coursename, onRemove }) => {
 	);
 };
 
-const Body = () => {
-	const [courses, setCourses] = useState([]);
-	const [courseOption, setCourseOption] = useState({});
-	const [degreeOption, setDegreeOption] = useState("");
-	const [batchOption, setBatchOption] = useState("");
-	const [currentSection, setCurrentSection] = useState("");
-	const [dayOption, setDayOption] = useState("Monday");
+const Body = ({isDarkmode}) => {
+  const [courses, setCourses] = useState([]);
+  const [courseOption, setCourseOption] = useState({});
+  const [degreeOption, setDegreeOption] = useState("");
+  const [batchOption, setBatchOption] = useState("");
+  const [currentSection, setCurrentSection] = useState("");
+  const [dayOption, setDayOption] = useState("Monday");
 
 	function setCourse(currentOption) {
 		setCourseOption(currentOption);
@@ -111,113 +110,118 @@ const Body = () => {
 		}
 	};
 
-	return (
-		<div className="flex flex-col p-4 border border-gray-300 dark:text-white">
-			<div className="selections flex mt-4 border-b border-gray-300 pb-4 flex-col md:flex-row">
-				<div className="select flex flex-col p-4 border-r border-gray-300 basis-1/3">
-					<label htmlFor="day" className="mt-4 mb-2">
-						Select Day:
-					</label>
-					<Select2
-						id="day"
-						selectType={SELECT2_TYPE_CLASSES.base}
-						className="basic-single"
-						classNamePrefix="select"
-						defaultValue={dayOptions[0]}
-						onChange={onDayChange}
-						options={dayOptions}
-					/>
+  return (
+    <div className="flex flex-col p-4 dark:text-white">
+      <div className="selections flex mt-4 border-gray-300 pb-4 flex-col md:flex-row">
+        <div className="select flex flex-col p-5 md:border-r-4 xs:border-b-4 border-light-blue dark:border-dark-purple basis-1/3">
+          <label htmlFor="day" className="mt-4 mb-2 font-semibold">
+            Select Day:
+          </label>
+          <Select2
+		  	isDarkmode = {isDarkmode}
+            id="day"
+            selectType={SELECT2_TYPE_CLASSES.base}
+            className="basic-single"
+            classNamePrefix="select"
+            defaultValue={dayOptions[0]}
+            onChange={onDayChange}
+            options={dayOptions}
+          />
 
-					<label htmlFor="degree" className="mt-4 mb-2">
-						Select Degree:
-					</label>
-					<Select2
-						id="degree"
-						selectType={SELECT2_TYPE_CLASSES.base}
-						className="basic-single"
-						classNamePrefix="select"
-						defaultValue={degreeOptions[0]}
-						name="color"
-						onChange={onDegreeChange}
-						options={degreeOptions}
-					/>
+          <label htmlFor="degree" className="mt-4 mb-2 font-semibold">
+            Select Degree:
+          </label>
+          <Select2
+		  	isDarkmode = {isDarkmode}
+            id="degree"
+            selectType={SELECT2_TYPE_CLASSES.base}
+            className="basic-single"
+            classNamePrefix="select"
+            defaultValue={degreeOptions[0]}
+            name="color"
+            onChange={onDegreeChange}
+            options={degreeOptions}
+          />
 
-					<label htmlFor="batch" className="mt-4 mb-2">
-						Select Batch:
-					</label>
-					<Select2
-						id="batch"
-						selectType={SELECT2_TYPE_CLASSES.base}
-						className="basic-single"
-						classNamePrefix="select"
-						defaultValue={batchOptions[0]}
-						name="color"
-						onChange={onBatchChange}
-						options={batchOptions}
-					/>
+          <label htmlFor="batch" className="mt-4 mb-2 font-semibold">
+            Select Batch:
+          </label>
+          <Select2
+		  	isDarkmode = {isDarkmode}
+            id="batch"
+            selectType={SELECT2_TYPE_CLASSES.base}
+            className="basic-single"
+            classNamePrefix="select"
+            defaultValue={batchOptions[0]}
+            name="color"
+            onChange={onBatchChange}
+            options={batchOptions}
+          />
 
-					<label htmlFor="course" className="mt-4 mb-2">
-						Select Course:
-					</label>
-					<Select2
-						id="course"
-						selectType={SELECT2_TYPE_CLASSES.async}
-						cacheOptions
-						defaultOptions
-						loadOptions={promiseOptions}
-						onChange={setCourse}
-					/>
+          <label htmlFor="course" className="mt-4 mb-2 font-semibold">
+            Select Course:
+          </label>
+          <Select2
+		  	isDarkmode = {isDarkmode}
+            id="course"
+            selectType={SELECT2_TYPE_CLASSES.async}
+            cacheOptions
+            defaultOptions
+            loadOptions={promiseOptions}
+            onChange={setCourse}
+          />
 
-					<label htmlFor="section" className="mt-4 mb-2">
-						Select Section:
-					</label>
-					<Select2
-						selectType={SELECT2_TYPE_CLASSES.base}
-						className="basic-single"
-						classNamePrefix="select"
-						defaultValue={sectionOptions[0]}
-						name="color"
-						onChange={onSectionChange}
-						options={sectionOptions}
-					/>
-
-					<button
-						className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-						onClick={addCourse}
-					>
-						Add Course
-					</button>
-				</div>
-				<div className="showcourses p-4 flex-col basis-2/3">
-					<p className="text-lg font-bold text-gray-800 mb-2 dark:text-white">
-						Selected Courses:
-					</p>
-					<div className="courses flex w-full flex-wrap gap-5">
-						{courses.map((course, index) => {
-							return (
-								<CourseSegment
-									key={index}
-									coursename={course}
-									onRemove={() => handleRemoveCourseSegment(index)}
-								/>
-							);
-						})}
-					</div>
-					<div className="flex self-end w-full">
-						<button className="mt-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded justify-self-end">
-							Generate TimeTable
-						</button>
-					</div>
-				</div>
-			</div>
-			<div>
-				{
-					//<Table courses={timetable.Monday} day={"Monday"} />}
-				}
-				<Timetable courses={timetable} day={dayOption} />
-			</div>
-		</div>
-	);
+          <label htmlFor="section" className="mt-4 mb-2 font-semibold">
+            Select Section:
+          </label>
+          <Select2
+		  	isDarkmode = {isDarkmode}
+            selectType={SELECT2_TYPE_CLASSES.base}
+            className="basic-single"
+            classNamePrefix="select"
+            defaultValue={sectionOptions[0]}
+            name="color"
+            onChange={onSectionChange}
+            options={sectionOptions}
+          />
+          <div className="flex justify-center align-middle pt-3 mt-3">
+            <Button
+              onClick={addCourse}
+            >
+              Add Course
+            </Button>
+          </div>
+        </div>
+        <div className="showcourses p-4 flex-col basis-2/3">
+          <p className="text-lg font-bold text-gray-800 mb-2 dark:text-white">
+            Selected Courses:
+          </p>
+          <div className="courses flex w-full flex-wrap">
+            {courses.map((course, index) => {
+              return (
+                <CourseSegment
+                  key={index}
+                  coursename={course}
+                  onRemove={() => handleRemoveCourseSegment(index)}
+                />
+              );
+            })}
+          </div>
+          <div className="flex self-end w-full mt-5 justify-center">
+            <Button>
+              Generate TimeTable
+            </Button>
+          </div>
+        </div>
+      </div>
+      <div>
+        {
+          //<Table courses={timetable.Monday} day={"Monday"} />}
+        }
+        <Timetable courses={timetable} day={dayOption} />
+      </div>
+    </div>
+  );
 };
 
 export default Body;
