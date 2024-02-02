@@ -23,7 +23,7 @@ app.get("/home", (req, res) => {
 // test code for the google sheets api
 app.get("/", async (req, res) => {
   const sheetId = "1feZLJJN4NDjAnqA8J5vHnVGrl9R91-NFGOqAW0gU5h4";
-  const outputPath = "output.xlsx";
+  const outputPath = "timetableFile/timetable.xlsx";
 
   const auth = new google.auth.GoogleAuth({
     keyFile: "key.json", // Path to your credentials file
