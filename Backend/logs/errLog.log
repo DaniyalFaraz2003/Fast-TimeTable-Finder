@@ -1,0 +1,2 @@
+20240202	17:13:49	b0ae57fb-68bd-4348-bfa0-8a8b55a38aab	ReferenceError: path is not defined	GET	/	undefined
+20240202	17:14:37	a646e4f1-3661-4744-8cb4-41d1dd713bbd	ReferenceError: path is not defined	GET	/favicon.ico	undefined
