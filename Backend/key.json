@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "timetable-app-413113",
+  "private_key_id": "5ad249c109a1a70ee60a6c495dbdce8739a544e0",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC6OTaFB/BKNq4K\nXNEKu5uF5xI77EVVnCBbGVEjRBHQBF2k9p9L5ANa/bbP4I65SXDPnNt0G7wBPFHQ\nln3oam/HAq2ylMca2d6Nr1oilNmEHtd2d3LR0TVP1/KH8fugMMyHXFG2bTWBDI1f\nFrG+9lTE/iGXEmwd/nwdGgSoTbeI4jcyzV3flsP5A4pj6FYvgnRgDzfqNTcrdi8U\nxvVNv7fSQ1YqO21iQzrhXLkK0RuPtWnnA1kvxPuTCmp6q48c7HGeoCasJ4x8VskJ\n6J27SZY1qyl6pyEeZkc9qGa0uAhyNPlSgJFIfvQi0EvlLLMFzJSfh3LNQlmmN/K7\n3kytRc47AgMBAAECggEAETFnDzEvG4BLi+QLM2p5brYUFjmMzTKflMmUQXqaCmfc\nyCDc5CzRAn2aJecdm425lJwZcXF+EhR3mUJ2WBbmQFbG9/iJyWOEC0tn5E7J0PY9\nU6VY5yDhmIA01shIlamWYzOVd7pCzlSnrg0dAVHM0cMvZrs/WtA8CpPJtPWNPwiQ\ne1ING9i6jJ5mWIVz+vtJwBAcWxDKL/i3gvvF3at87oYWi7fHADeWTp+/ye2mWTv9\ndt9vde1r9/PvTqet+mIZs0EoONj5PQbJCT7IZN3U9fOxK9rFqZIJ9eKppYCFZNtm\nSWrawRmws0fbBeNQbQRHWyUZO1wFW/GoyIaNVctbgQKBgQDxSARPHEFB2mAM6fd2\nW+hmwPAkOZ9MAGAB9SjnQAF5imwY2DWmdngn2ZTKybo8SNAQ/hiOj0he/m08M709\nh53B+BkKBoos34m1fe/WmeCwx7UTTs8e4gd9AdhmLnZvEABufpeUDD4bd2iut6dg\nEpXAgZ5l7xqA7HWKtVRdqspbyQKBgQDFlWHq3FweuGEGCk8eUDEJ3pAqkltAxTIQ\n356VRRU78GLtluqyYxvrZERUvcGtdJqZb/ywOX8gW8EXJrSx2TmHJTjjz6XcJKQz\n7R8ujKso9uc7FZAwFa8Vt3+wwAs1MW5mvuBZz2otTbyHuUS/IqCWFmNkoFS4dYqy\nSOh1bRKT4wKBgQCDRmSZykyzEKZbwFxUeFLsvSKrAvLpvfZ+ei2kDA4BW8/OgKxI\nAoMDY31yC+mY7SDPbgBcaBa/IHy8WYYn2QZ7R4oQC1jYa1MYfQml4BkA9ddORv2n\n1uCuIffkOHlVmgYyGAxOj46nEQPSs7eMLPBvSdatrTblWEHnkxrwz4DECQKBgBxE\nYt3W6Nb8SeUzVF5h2qIu1TFB/wwlKiR/2ZBBcehBW+Xh0XHz++qRTbVR8IOASx3o\nh54um6Flfxpwzykiirhq+ticvH3iQButsOhX96TErhAl5Zr7fzD8L6h50SCrEcBh\nTneK1QXmOTKxrsQpkA/o5A9hYL2DE3SuOZOTJzVBAoGAGt8djyzvsQxk2yjFCjbz\nH/hHnS/7RvjdCMVF15B+/HxuTwdaSQan/pSWO3NZEq2NXHe2KCJ/kLn9h/5PPyCa\nDQCl5vZuNsaGMsY9walDSswUZHuKyuIwwzhtkUpPX3LzJOp3WrXwg0MUoIE/HUmy\n+ml8HOQjblw9xgM9u/tKwFI=\n-----END PRIVATE KEY-----\n",
+  "client_email": "timetable-app@timetable-app-413113.iam.gserviceaccount.com",
+  "client_id": "112409243018881932609",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/timetable-app%40timetable-app-413113.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
