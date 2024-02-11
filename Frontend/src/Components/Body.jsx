@@ -3,42 +3,42 @@ import { useState } from "react";
 import Select2, { SELECT2_TYPE_CLASSES } from "./select2/select2.component";
 
 import {
-	timetable,
-	courseOptions,
-	degreeOptions,
-	batchOptions,
-	sectionOptions,
-	dayOptions,
+  timetable,
+  courseOptions,
+  degreeOptions,
+  batchOptions,
+  sectionOptions,
+  dayOptions,
 } from "../data.mjs";
 
 import Button from "./Button/button.component";
 import Timetable from "./table/timetable.component";
 
 const filterCourse = (inputValue) => {
-	return courseOptions.filter((i) =>
-		i.label.toLowerCase().includes(inputValue.toLowerCase())
-	);
+  return courseOptions.filter((i) =>
+    i.label.toLowerCase().includes(inputValue.toLowerCase())
+  );
 };
 
 const promiseOptions = (inputValue) =>
-	new Promise((resolve) => {
-		setTimeout(() => {
-			resolve(filterCourse(inputValue));
-		}, 1000);
-	});
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(filterCourse(inputValue));
+    }, 1000);
+  });
 
 const CourseSegment = ({ coursename, onRemove }) => {
-	return (
-		<div className="inline-flex items-center bg-slate-600 text-white font-semibold px-3 py-1 rounded-full mr-2">
-			<span>{coursename}</span>
-			<button className="ml-2 focus:outline-none" onClick={onRemove}>
-				&#10005;
-			</button>
-		</div>
-	);
+  return (
+    <div className="inline-flex items-center bg-slate-600 text-white font-semibold px-3 py-1 rounded-full mr-2">
+      <span>{coursename}</span>
+      <button className="ml-2 focus:outline-none" onClick={onRemove}>
+        &#10005;
+      </button>
+    </div>
+  );
 };
 
-const Body = ({isDarkmode}) => {
+const Body = ({ isDarkmode }) => {
   const [courses, setCourses] = useState([]);
   const [courseOption, setCourseOption] = useState({});
   const [degreeOption, setDegreeOption] = useState("");
@@ -46,69 +46,69 @@ const Body = ({isDarkmode}) => {
   const [currentSection, setCurrentSection] = useState("");
   const [dayOption, setDayOption] = useState("Monday");
 
-	function setCourse(currentOption) {
-		setCourseOption(currentOption);
-	}
+  function setCourse(currentOption) {
+    setCourseOption(currentOption);
+  }
 
-	const onDayChange = (selectedDay) => {
-		const { label, value } = selectedDay;
-		setDayOption(value);
-	};
+  const onDayChange = (selectedDay) => {
+    const { label, value } = selectedDay;
+    setDayOption(value);
+  };
 
-	const onDegreeChange = (selectedDegree) => {
-		const { label, value } = selectedDegree;
-		setDegreeOption(value);
-	};
+  const onDegreeChange = (selectedDegree) => {
+    const { label, value } = selectedDegree;
+    setDegreeOption(value);
+  };
 
-	const onBatchChange = (selectedBatch) => {
-		const { label, value } = selectedBatch;
-		setBatchOption(value);
-	};
+  const onBatchChange = (selectedBatch) => {
+    const { label, value } = selectedBatch;
+    setBatchOption(value);
+  };
 
-	const onSectionChange = (selectedSection) => {
-		const { label, value } = selectedSection;
-		setCurrentSection(value);
-	};
+  const onSectionChange = (selectedSection) => {
+    const { label, value } = selectedSection;
+    setCurrentSection(value);
+  };
 
-	const handleRemoveCourseSegment = (index) => {
-		const newCourses = [...courses];
-		newCourses.splice(index, 1);
-		setCourses(newCourses);
-	};
+  const handleRemoveCourseSegment = (index) => {
+    const newCourses = [...courses];
+    newCourses.splice(index, 1);
+    setCourses(newCourses);
+  };
 
-	const addCourse = () => {
-		let selectedCourse = null;
-		if (courseOption.value === "ALL") {
-			let courseCopy = [...courses];
-			for (const option of courseOptions) {
-				if (option.value === "ALL") continue;
-				selectedCourse =
-					option.value +
-					"-" +
-					degreeOption +
-					"-" +
-					batchOption +
-					"-" +
-					currentSection;
-				if (!courseCopy.includes(selectedCourse)) {
-					courseCopy.push(selectedCourse);
-				}
-			}
-			setCourses(courseCopy);
-		} else {
-			selectedCourse =
-				courseOption.value +
-				"-" +
-				degreeOption +
-				"-" +
-				batchOption +
-				"-" +
-				currentSection;
-			if (!courses.includes(selectedCourse)) {
-				setCourses([...courses, selectedCourse]);
-			}
-		}
-	};
+  const addCourse = () => {
+    let selectedCourse = null;
+    if (courseOption.value === "ALL") {
+      let courseCopy = [...courses];
+      for (const option of courseOptions) {
+        if (option.value === "ALL") continue;
+        selectedCourse =
+          option.value +
+          "-" +
+          degreeOption +
+          "-" +
+          batchOption +
+          "-" +
+          currentSection;
+        if (!courseCopy.includes(selectedCourse)) {
+          courseCopy.push(selectedCourse);
+        }
+      }
+      setCourses(courseCopy);
+    } else {
+      selectedCourse =
+        courseOption.value +
+        "-" +
+        degreeOption +
+        "-" +
+        batchOption +
+        "-" +
+        currentSection;
+      if (!courses.includes(selectedCourse)) {
+        setCourses([...courses, selectedCourse]);
+      }
+    }
+  };
 
   return (
     <div className="flex flex-col p-4 dark:text-white">
@@ -118,7 +118,7 @@ const Body = ({isDarkmode}) => {
             Select Day:
           </label>
           <Select2
-		  	isDarkmode = {isDarkmode}
+            isDarkmode={isDarkmode}
             id="day"
             selectType={SELECT2_TYPE_CLASSES.base}
             className="basic-single"
@@ -132,7 +132,7 @@ const Body = ({isDarkmode}) => {
             Select Degree:
           </label>
           <Select2
-		  	isDarkmode = {isDarkmode}
+            isDarkmode={isDarkmode}
             id="degree"
             selectType={SELECT2_TYPE_CLASSES.base}
             className="basic-single"
@@ -147,7 +147,7 @@ const Body = ({isDarkmode}) => {
             Select Batch:
           </label>
           <Select2
-		  	isDarkmode = {isDarkmode}
+            isDarkmode={isDarkmode}
             id="batch"
             selectType={SELECT2_TYPE_CLASSES.base}
             className="basic-single"
@@ -162,7 +162,7 @@ const Body = ({isDarkmode}) => {
             Select Course:
           </label>
           <Select2
-		  	isDarkmode = {isDarkmode}
+            isDarkmode={isDarkmode}
             id="course"
             selectType={SELECT2_TYPE_CLASSES.async}
             cacheOptions
@@ -175,7 +175,7 @@ const Body = ({isDarkmode}) => {
             Select Section:
           </label>
           <Select2
-		  	isDarkmode = {isDarkmode}
+            isDarkmode={isDarkmode}
             selectType={SELECT2_TYPE_CLASSES.base}
             className="basic-single"
             classNamePrefix="select"
