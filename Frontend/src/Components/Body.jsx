@@ -84,14 +84,13 @@ const Body = ({ isDarkmode }) => {
 	const [degreeOption, setDegreeOption] = useState("");
 	const [batchOption, setBatchOption] = useState("");
 	const [currentSection, setCurrentSection] = useState("");
-	const [dayOption, setDayOption] = useState("Monday");
+	const [dayOption, setDayOption] = useState("");
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const response = await axios.get("http://localhost:5000/api/v1/data");
 				setData(response.data);
-				setDegreeOption(Object.keys(response.data)[0]);
 				console.log(response.data);
 			} catch (err) {
 				console.log(err)
@@ -180,7 +179,6 @@ const Body = ({ isDarkmode }) => {
 						selectType={SELECT2_TYPE_CLASSES.base}
 						className="basic-single"
 						classNamePrefix="select"
-						defaultValue={dayOptions[0]}
 						onChange={onDayChange}
 						options={dayOptions}
 					/>
@@ -197,7 +195,8 @@ const Body = ({ isDarkmode }) => {
 						defaultValue={"Select..."}
 						name="color"
 						onChange={onDegreeChange}
-						options={data ? parseDropdownData(data) : degreeOptions}
+						options={data && dayOption ? parseDropdownData(data) : degreeOptions}
+						isDisabled = {dayOption ? false : true}
 					/>
 
 					<label htmlFor="batch" className="mt-4 mb-2 font-semibold">
@@ -211,8 +210,9 @@ const Body = ({ isDarkmode }) => {
 						classNamePrefix="select"
 						defaultValue={"Select..."}
 						name="color"
+						isDisabled = {degreeOption ? false : true}
 						onChange={onBatchChange}
-						options={data ? parseDropdownData(data, degreeOption) : batchOptions}
+						options={data && degreeOption ? parseDropdownData(data, degreeOption) : batchOptions}
 					/>
 
 					<label htmlFor="course" className="mt-4 mb-2 font-semibold">
@@ -225,9 +225,10 @@ const Body = ({ isDarkmode }) => {
 						className="basic-single"
 						classNamePrefix="select"
 						defaultValue={"Select..."}
+						isDisabled = {batchOption ? false : true}
 						name="color"
 						onChange={onCourseChange}
-						options={data ? parseDropdownData(data, degreeOption, batchOption) : courseOptions}
+						options={data && batchOption ? parseDropdownData(data, degreeOption, batchOption) : courseOptions}
 					/>
 
 					<label htmlFor="section" className="mt-4 mb-2 font-semibold">
@@ -240,8 +241,9 @@ const Body = ({ isDarkmode }) => {
 						classNamePrefix="select"
 						defaultValue={"Select..."}
 						name="color"
+						isDisabled = {courseOption ? false : true}
 						onChange={onSectionChange}
-						options={data ? parseDropdownData(data, degreeOption, batchOption, courseOption) : sectionOptions}
+						options={data && courseOption ? parseDropdownData(data, degreeOption, batchOption, courseOption) : sectionOptions}
 					/>
 					<div className="flex justify-center align-middle pt-3 mt-3">
 						<Button
@@ -276,8 +278,8 @@ const Body = ({ isDarkmode }) => {
 			<div>
 				{
 					//<Table courses={timetable.Monday} day={"Monday"} />}
+				//<Timetable courses={timetable} day={dayOption} />
 				}
-				<Timetable courses={timetable} day={dayOption} />
 			</div>
 		</div>
 	);

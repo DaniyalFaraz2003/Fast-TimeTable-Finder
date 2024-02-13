@@ -49,7 +49,7 @@ const getSelect2 = (selectType = SELECT2_TYPE_CLASSES.base) =>
     [SELECT2_TYPE_CLASSES.async]: AsySelect,
   }[selectType]);
 
-const Select2 = ({ selectType, isDarkmode,...otherprops }) => {
+const Select2 = ({ selectType, isDarkmode, isDisabled = false,...otherprops }) => {
   const SelectComponent = getSelect2(selectType);
   const { options } = otherprops;
   const styles = {
@@ -78,7 +78,7 @@ const Select2 = ({ selectType, isDarkmode,...otherprops }) => {
       color:  isDarkmode ?'#ffff':'#000',
     })
   }
-  return <SelectComponent {...otherprops} isDarkmode = {isDarkmode} styles = {styles}></SelectComponent>;
+  return <SelectComponent {...otherprops} isDarkmode = {isDarkmode} styles = {styles} isDisabled = {isDisabled}></SelectComponent>;
 };
 
 export default Select2;
