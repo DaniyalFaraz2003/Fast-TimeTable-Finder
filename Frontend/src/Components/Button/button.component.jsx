@@ -1,6 +1,14 @@
-export default function Button({ onClick, children }) {
-  return (
+export default function Button({ onClick, children,isDisabled = false,isDisabledText}) {
+  console.log(isDisabled);
+  return ( isDisabled ? 
     <a
+    href="#_"
+    className="cursor-not-allowed relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-medium tracking-tighter dark:text-white text-black bg-gray-500 rounded-lg group"
+  >
+    <p className="relative font-bold text-md">{isDisabledText}</p>
+  </a>
+  : 
+   <a
       onClick={onClick}
       href="#_"
       className="relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-medium tracking-tighter dark:text-white text-black bg-gray-500 rounded-lg group"

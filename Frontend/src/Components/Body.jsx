@@ -1,6 +1,6 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import Select2, { SELECT2_TYPE_CLASSES } from "./select2/select2.component";
+import { useState, useEffect, useRef } from "react";
+import BaseSelect from "./select/select.component";
 import axios from "axios"
 
 import {
@@ -86,6 +86,14 @@ const Body = ({ isDarkmode }) => {
 	const [currentSection, setCurrentSection] = useState("");
 	const [dayOption, setDayOption] = useState("");
 
+	const dayRef = useRef();
+	const degreeRef = useRef();
+	const batchRef = useRef();
+	const courseRef = useRef();
+	const sectionRef = useRef();
+
+
+
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -103,28 +111,38 @@ const Body = ({ isDarkmode }) => {
 	}, [])
 
 	function onCourseChange(selectedCourse) {
-		const { label, value } = selectedCourse;
-		setCourseOption(value);
+		if(selectedCourse){
+			const { label, value } = selectedCourse;
+			setCourseOption(value);
+		}
 	}
 
 	const onDayChange = (selectedDay) => {
-		const { label, value } = selectedDay;
-		setDayOption(value);
+		if(selectedDay){	
+			const { label, value } = selectedDay;
+			setDayOption(value);
+		}
 	};
 
 	const onDegreeChange = (selectedDegree) => {
-		const { label, value } = selectedDegree;
-		setDegreeOption(value);
+		if(selectedDegree){
+			const { label, value } = selectedDegree;
+			setDegreeOption(value);
+		}
 	};
 
 	const onBatchChange = (selectedBatch) => {
-		const { label, value } = selectedBatch;
-		setBatchOption(value);
+		if(selectedBatch){
+			const { label, value } = selectedBatch;
+			setBatchOption(value);
+		}
 	};
 
 	const onSectionChange = (selectedSection) => {
-		const { label, value } = selectedSection;
-		setCurrentSection(value);
+		if(selectedSection){
+			const { label, value } = selectedSection;
+			setCurrentSection(value);
+		}
 	};
 
 	const handleRemoveCourseSegment = (index) => {
@@ -166,6 +184,54 @@ const Body = ({ isDarkmode }) => {
 			}
 		}
 	};
+	//reset below fields:
+	//if degree changed
+	useEffect(()=>{
+		const resetFields= () => {
+			if(batchRef && batchRef.current){
+				batchRef.current.clearValue();
+				setBatchOption('');
+			}
+			if(sectionRef && sectionRef.current){
+				sectionRef.current.clearValue();
+				setCurrentSection('');
+			}
+			if(courseRef && courseRef.current){
+				courseRef.current.clearValue();
+				setCourseOption('');
+			}
+		}
+		resetFields();
+	},[degreeOption])
+
+
+	//if batch changed 
+	useEffect(()=>{
+		const resetFields= () => {
+			if(sectionRef && sectionRef.current){
+				sectionRef.current.clearValue();
+				setCurrentSection('');
+			}
+			if(courseRef && courseRef.current){
+				courseRef.current.clearValue();
+				setCourseOption('');
+			}
+		}
+		resetFields();
+	},[batchOption])
+
+
+	//if course changed
+	useEffect(()=>{
+		const resetFields= () => {
+			if(sectionRef && sectionRef.current){
+				sectionRef.current.clearValue();
+				setCurrentSection('');
+			}
+		}
+		resetFields();
+	},[courseOption])
+
 	return (
 		<div className="flex flex-col p-4 dark:text-white">
 			<div className="selections flex mt-4 border-gray-300 pb-4 flex-col md:flex-row">
@@ -173,23 +239,22 @@ const Body = ({ isDarkmode }) => {
 					<label htmlFor="day" className="mt-4 mb-2 font-semibold">
 						Select Day:
 					</label>
-					<Select2
+					<BaseSelect
 						isDarkmode={isDarkmode}
 						id="day"
-						selectType={SELECT2_TYPE_CLASSES.base}
 						className="basic-single"
 						classNamePrefix="select"
 						onChange={onDayChange}
 						options={dayOptions}
+						ref = {dayRef}
 					/>
 
 					<label htmlFor="degree" className="mt-4 mb-2 font-semibold">
 						Select Degree:
 					</label>
-					<Select2
+					<BaseSelect
 						isDarkmode={isDarkmode}
 						id="degree"
-						selectType={SELECT2_TYPE_CLASSES.base}
 						className="basic-single"
 						classNamePrefix="select"
 						defaultValue={"Select..."}
@@ -197,15 +262,15 @@ const Body = ({ isDarkmode }) => {
 						onChange={onDegreeChange}
 						options={data && dayOption ? parseDropdownData(data) : degreeOptions}
 						isDisabled = {dayOption ? false : true}
+						ref = {degreeRef}
 					/>
 
 					<label htmlFor="batch" className="mt-4 mb-2 font-semibold">
 						Select Batch:
 					</label>
-					<Select2
+					<BaseSelect
 						isDarkmode={isDarkmode}
 						id="batch"
-						selectType={SELECT2_TYPE_CLASSES.base}
 						className="basic-single"
 						classNamePrefix="select"
 						defaultValue={"Select..."}
@@ -213,15 +278,15 @@ const Body = ({ isDarkmode }) => {
 						isDisabled = {degreeOption ? false : true}
 						onChange={onBatchChange}
 						options={data && degreeOption ? parseDropdownData(data, degreeOption) : batchOptions}
+						ref = {batchRef}
 					/>
 
 					<label htmlFor="course" className="mt-4 mb-2 font-semibold">
 						Select Course:
 					</label>
-					<Select2
+					<BaseSelect
 						isDarkmode={isDarkmode}
 						id="course"
-						selectType={SELECT2_TYPE_CLASSES.base}
 						className="basic-single"
 						classNamePrefix="select"
 						defaultValue={"Select..."}
@@ -229,14 +294,14 @@ const Body = ({ isDarkmode }) => {
 						name="color"
 						onChange={onCourseChange}
 						options={data && batchOption ? parseDropdownData(data, degreeOption, batchOption) : courseOptions}
+						ref = {courseRef}
 					/>
 
 					<label htmlFor="section" className="mt-4 mb-2 font-semibold">
 						Select Section:
 					</label>
-					<Select2
+					<BaseSelect
 						isDarkmode={isDarkmode}
-						selectType={SELECT2_TYPE_CLASSES.base}
 						className="basic-single"
 						classNamePrefix="select"
 						defaultValue={"Select..."}
@@ -244,10 +309,13 @@ const Body = ({ isDarkmode }) => {
 						isDisabled = {courseOption ? false : true}
 						onChange={onSectionChange}
 						options={data && courseOption ? parseDropdownData(data, degreeOption, batchOption, courseOption) : sectionOptions}
+						ref = {sectionRef}
 					/>
 					<div className="flex justify-center align-middle pt-3 mt-3">
 						<Button
+							isDisabled = {dayOption === '' || courseOption === '' || degreeOption === '' || currentSection === '' || batchOption === ''}
 							onClick={addCourse}
+							isDisabledText={"Not Enough Information"}
 						>
 							Add Course
 						</Button>
@@ -269,7 +337,7 @@ const Body = ({ isDarkmode }) => {
 						})}
 					</div>
 					<div className="flex self-end w-full mt-5 justify-center">
-						<Button>
+						<Button isDisabled = {courses.length === 0} isDisabledText={"Add Atleast One Course"}>
 							Generate TimeTable
 						</Button>
 					</div>
